@@ -28,14 +28,12 @@ class App extends Component {
       ...data,
       id: nanoid(),
     };
-    // eslint-disable-next-line
-    {
-      (!repeatedName)
-        ? (this.setState(prevState => ({
-            contacts: [...prevState.contacts, contact],
-          })))
-        : (alert(`${data.name} is already in contacts`));
-    }
+    
+    (!repeatedName)
+    ? this.setState(prevState => ({
+      contacts: [...prevState.contacts, contact],
+    }))
+    : (alert(`${data.name} is already in contacts`));      
   };
 
   getFillteredNames = () => {

@@ -7,7 +7,7 @@ const ContactList = ({ contactArray, onDeleteClick }) => {
       {contactArray.map(({ id, name, number }) => {
         return (
           <ContactListItem
-            id={id}
+            key={id}
             name={name}
             number={number}
             onDeleteClick={onDeleteClick}
@@ -19,7 +19,11 @@ const ContactList = ({ contactArray, onDeleteClick }) => {
 };
 
 ContactList.propTypes = {
-  contactArray: PropTypes.arrayOf(PropTypes.shape),
+  contactArray: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    })
+  ),
 };
 
 export default ContactList;

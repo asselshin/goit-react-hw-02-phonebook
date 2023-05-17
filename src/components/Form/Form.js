@@ -15,8 +15,17 @@ class Form extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.onSubmit(this.state);
-    // this.reset();
+
+    const repeatedName = this.props.contacts.find(
+      contact => contact.name === this.state.name
+    );
+
+    if (!repeatedName) {
+      this.props.onSubmit(this.state);
+      this.reset();
+    } else {
+      alert(`${this.state.name} is already in contacts`);
+    }
   };
 
   reset = () => {

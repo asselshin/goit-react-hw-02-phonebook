@@ -8,6 +8,7 @@ const ContactList = ({ contactArray, onDeleteClick }) => {
         return (
           <ContactListItem
             key={id}
+            id={id}
             name={name}
             number={number}
             onDeleteClick={onDeleteClick}

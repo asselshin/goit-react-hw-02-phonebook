@@ -20,20 +20,15 @@ class App extends Component {
   };
 
   formSubmitHandler = data => {
-    const repeatedName = this.state.contacts.find(
-      contact => contact.name === data.name
-    );
-
+    
     const contact = {
       ...data,
       id: nanoid(),
     };
     
-    (!repeatedName)
-    ? this.setState(prevState => ({
+    this.setState(prevState => ({
       contacts: [...prevState.contacts, contact],
-    }))
-    : (alert(`${data.name} is already in contacts`));      
+    }))      
   };
 
   getFillteredNames = () => {
@@ -47,8 +42,9 @@ class App extends Component {
   };
 
   deleteContact = contactId => {
+    console.log(contactId)
     this.setState(prevState => ({
-      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
+      contacts: [...prevState.contacts.filter(contact => contact.id !== contactId),], 
     }));
   };
 
@@ -58,9 +54,9 @@ class App extends Component {
     return (
       <div className="container">
         <h1>Phonebook </h1>
-        <Form onSubmit={this.formSubmitHandler} />
+        <Form onSubmit={this.formSubmitHandler} contacts={this.state.contacts} />
         <h2>Contacts</h2>
-        <Filter value={this.state.filter} onChange={this.changeFilter} />
+        <Filter value={this.state.filter} onChange={this.changeFilter}/>
         <ContactList
           contactArray={filteredNames}
           onDeleteClick={this.deleteContact}
